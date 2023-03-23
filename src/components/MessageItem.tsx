@@ -94,7 +94,7 @@ export default (props: Props) => {
           .replace(
             /OpenAI/g,
             `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
-          )}
+          ).substring(1429)}
       />
       <MessageAction
         del={del}
