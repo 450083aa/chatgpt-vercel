@@ -4,6 +4,10 @@
   padding: 0.4rem 1rem;
 }
 
+.message{
+  align-items: center;
+}
+
 .dark .message pre {
   background-color: #64748b10;
 }

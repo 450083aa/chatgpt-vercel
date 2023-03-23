@@ -207,7 +207,7 @@ export default function (props: {
         ...messageList(),
         {
           role: "user",
-          content: str + inputValue
+          content: inputValue
         }
       ])
     }
