@@ -254,8 +254,7 @@ export default function (props: {
 \t\t场次4\t16:30:00\t叶瑶\t友理
 \t\t场次5\t17:00:00\t李明\t杰哥
 \t\t结束\t17:30:00\t小卷毛\t黑月
-\n我的问题是：565655`
-    console.log(str.substring(str.indexOf(`我的问题是：`) + 6))
+\n我的问题是：`
     if (
       !value ||
       value !==
@@ -272,7 +271,7 @@ export default function (props: {
       ])
     }
     try {
-      await fetchGPT(inputValue)
+      await fetchGPT(str + inputValue)
     } catch (error: any) {
       setLoading(false)
       setController()
