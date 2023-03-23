@@ -78,11 +78,11 @@ export default (props: Props) => {
         temporary: props.index === undefined
       }}
     >
-      <div
-        class={`shrink-0 w-7 h-7 mt-4 rounded-full op-80 ${
-          roleClass[props.role]
-        }`}
-      />
+      {/*<div*/}
+      {/*  class={`shrink-0 w-7 h-7 mt-4 rounded-full op-80 ${*/}
+      {/*    roleClass[props.role]*/}
+      {/*  }`}*/}
+      {/*/>*/}
       <div
         class="message prose prose-slate dark:prose-invert dark:text-slate break-words overflow-hidden"
         innerHTML={md
