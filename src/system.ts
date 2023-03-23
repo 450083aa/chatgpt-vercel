@@ -16,5 +16,4 @@ export const setting = {
 export const message = ''
 export const text = import.meta.env.ADD_TEXT || ''
 export type Setting = typeof setting
-
 export const resetContinuousDialogue = false

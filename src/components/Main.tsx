@@ -9,7 +9,6 @@ import throttle from "just-throttle"
 import { isMobile } from "~/utils"
 import type { Setting } from "~/system"
 import { makeEventListener } from "@solid-primitives/event-listener"
-import { text } from "~/system"
 
 export interface PromptItem {
   desc: string
@@ -19,6 +18,7 @@ export interface PromptItem {
 export default function (props: {
   prompts: PromptItem[]
   env: {
+    text: string
     defaultSetting: Setting
     defaultMessage: string
     resetContinuousDialogue: boolean
@@ -27,7 +27,7 @@ export default function (props: {
   let inputRef: HTMLTextAreaElement
   let containerRef: HTMLDivElement
 
-  const { defaultMessage, defaultSetting, resetContinuousDialogue } = props.env
+  const { defaultMessage, defaultSetting, resetContinuousDialogue, text } = props.env
   const [messageList, setMessageList] = createSignal<ChatMessage[]>([])
   const [inputContent, setInputContent] = createSignal("")
   const [currentAssistantMessage, setCurrentAssistantMessage] = createSignal("")
@@ -195,7 +195,6 @@ export default function (props: {
     // @ts-ignore
     if (window?.umami) umami.trackEvent("chat_generate")
     setInputContent("")
-
     const str = text
     if (
       !value ||

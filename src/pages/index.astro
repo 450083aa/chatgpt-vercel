@@ -9,8 +9,12 @@ import "highlight.js/styles/atom-one-dark.css"
 import { parsePrompts } from "~/utils/parse"
 import { setting, message, resetContinuousDialogue } from "~/system"
 const prompts = parsePrompts()
+const text = import.meta.env.ADD_TEXT || ''
+
 const defaultMessage = import.meta.env.DEFAULT_MESSAGE || message
+
 let defaultSetting = setting
+console.log(text)
 if (import.meta.env.DEFAULT_SETTING) {
   try {
     defaultSetting = {
@@ -30,6 +34,7 @@ const _reset = import.meta.env.RESET_CONTINUOUS_DIALOGUE_OPTION
     <Header />
     <Main
       env={{
+        text,
         defaultSetting,
         defaultMessage,
         resetContinuousDialogue:
