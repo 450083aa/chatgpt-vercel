@@ -85,16 +85,22 @@ export default (props: Props) => {
       {/*/>*/}
       <div
         class="message prose prose-slate dark:prose-invert dark:text-slate break-words overflow-hidden"
-        innerHTML={md
-          .render(props.message)
-          .replace(
+        innerHTML={
+          md.render(props.message).indexOf(`我的问题是：`) !== -1 ?  md.render(props.message).replace(
             /Vercel/g,
             `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
           )
           .replace(
             /OpenAI/g,
             `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
-          ).substring(1429)}
+          ).substring(md.render(props.message).indexOf(`我的问题是：`) + 6) : md.render(props.message).replace(
+              /Vercel/g,
+              `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
+          )
+              .replace(
+                  /OpenAI/g,
+                  `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
+              )}
       />
       <MessageAction
         del={del}
