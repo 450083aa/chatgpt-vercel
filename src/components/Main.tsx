@@ -9,6 +9,7 @@ import throttle from "just-throttle"
 import { isMobile } from "~/utils"
 import type { Setting } from "~/system"
 import { makeEventListener } from "@solid-primitives/event-listener"
+import { text } from "~/system";
 
 export interface PromptItem {
   desc: string
@@ -194,7 +195,8 @@ export default function (props: {
     // @ts-ignore
     if (window?.umami) umami.trackEvent("chat_generate")
     setInputContent("")
-    const str = import.meta.env.ADD_TEXT
+
+    const str = text
     if (
       !value ||
       value !==
