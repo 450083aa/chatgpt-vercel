@@ -9,8 +9,6 @@ import throttle from "just-throttle"
 import { isMobile } from "~/utils"
 import type { Setting } from "~/system"
 import { makeEventListener } from "@solid-primitives/event-listener"
-import jsonp from "jsonp"
-import { baseURL } from "~/pages/api"
 
 export interface PromptItem {
   desc: string

@@ -81,7 +81,7 @@ export function randomKey(keys: string[]) {
 
 export async function fetchWithTimeout(
   input: RequestInfo | URL,
-  init?: (RequestInit & { timeout?: number }) | undefined
+  init?: (RequestInit & { timeout?: number; agent?: any }) | undefined
 ) {
   const { timeout = 500 } = init ?? {}
 

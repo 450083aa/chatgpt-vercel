@@ -26,6 +26,7 @@ specifiers:
   fzf: ^0.5.1
   highlight.js: ^11.7.0
   html-to-image: ^1.11.11
+  jsonp: ^0.2.1
   just-throttle: ^4.2.0
   katex: ^0.16.4
   lint-staged: ^13.0.3
@@ -38,6 +39,7 @@ specifiers:
   simple-git-hooks: ^2.8.1
   solid-js: ^1.6.15
   typescript: ^5.0.2
+  undici: ^5.20.0
   unocss: ^0.50.6
   vite-plugin-pwa: ^0.14.4
   workbox-window: ^6.5.4
@@ -58,6 +60,7 @@ dependencies:
   fzf: 0.5.1
   highlight.js: 11.7.0
   html-to-image: 1.11.11
+  jsonp: 0.2.1
   just-throttle: 4.2.0
   katex: 0.16.4
   markdown-it: 13.0.1
@@ -65,6 +68,7 @@ dependencies:
   markdown-it-katex: 2.0.3
   markdown-it-kbd: 2.2.2
   solid-js: 1.6.15
+  undici: 5.21.0
 
 devDependencies:
   '@iconify-json/carbon': 1.1.16
@@ -231,7 +235,7 @@ packages:
       dset: 3.1.2
       is-docker: 3.0.0
       is-wsl: 2.2.0
-      undici: 5.20.0
+      undici: 5.21.0
       which-pm-runs: 1.1.0
     transitivePeerDependencies:
       - supports-color
@@ -4993,6 +4997,14 @@ packages:
       graceful-fs: 4.2.10
     dev: true
 
+  /jsonp/0.2.1:
+    resolution: {integrity: sha512-pfog5gdDxPdV4eP7Kg87M8/bHgshlZ5pybl+yKxAnCZ5O7lCIn7Ixydj03wOlnDQesky2BPyA91SQ+5Y/mNwzw==}
+    dependencies:
+      debug: 2.6.9
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /jsonpointer/5.0.1:
     resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
     engines: {node: '>=0.10.0'}
@@ -7044,6 +7056,12 @@ packages:
 
   /undici/5.20.0:
     resolution: {integrity: sha512-J3j60dYzuo6Eevbawwp1sdg16k5Tf768bxYK4TUJRH7cBM4kFCbf3mOnM/0E3vQYXvpxITbbWmBafaDbxLDz3g==}
+    engines: {node: '>=12.18'}
+    dependencies:
+      busboy: 1.6.0
+
+  /undici/5.21.0:
+    resolution: {integrity: sha512-HOjK8l6a57b2ZGXOcUsI5NLfoTrfmbOl90ixJDl0AEFG4wgHNDQxtZy15/ZQp7HhjkpaGlp/eneMgtsu1dIlUA==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0

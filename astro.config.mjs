@@ -77,6 +77,13 @@ export default defineConfig({
           }
         ]
       },
+      define: {
+        'process.env': {
+          VUE_APP_BASE_URL: '/api',                 // 内容自定义，根据项目需求
+          VUE_APP_UCS_URL: '/ucs',                  // 内容自定义，根据项目需求
+          VUE_APP_UCS_UPLOAD_URL: '/upload'         // 内容自定义，根据项目需求
+        },
+      },
       disable: !!process.env.NETLIFY,
       workbox: {
         navigateFallback: "/404",

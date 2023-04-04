@@ -4,6 +4,7 @@ import { createParser } from "eventsource-parser"
 import type { ChatMessage } from "~/types"
 import { countTokens } from "~/utils/tokens"
 import { splitKeys, randomKey, fetchWithTimeout } from "~/utils"
+import { HttpProxyAgent } from "http-proxy-agent"
 
 export const config = {
   runtime: "edge",
@@ -34,7 +35,7 @@ export const config = {
   ]
 }
 export const localKey = import.meta.env.PUBLIC_OPENAI_API_KEY || ""
-
+export const httpsProxy = import.meta.env.PUBLIC_HTTPS_PROXY
 export const baseURL = import.meta.env.NOGFW
   ? "api.openai.com"
   : (import.meta.env.PUBLIC_OPENAI_API_BASE_URL || "api.openai.com").replace(
@@ -105,6 +106,8 @@ export const post: APIRoute = async context => {
 
     const encoder = new TextEncoder()
     const decoder = new TextDecoder()
+    let agent: any = ""
+    if (httpsProxy) agent = new HttpProxyAgent(httpsProxy)
     const rawRes = await fetchWithTimeout(
       `https://${baseURL}/v1/chat/completions`,
       {
@@ -114,6 +117,8 @@ export const post: APIRoute = async context => {
         },
         timeout: 10000,
         method: "POST",
+        // dispatcher,
+        agent,
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
           messages,

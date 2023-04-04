@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "start": "astro build && node ./dist/server/entry.mjs",
+    "build": "astro build && node ./dist/server/entry.mjs",
+    "start": "node ./dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint:fix": "eslint . --fix --ext .ts",
@@ -40,6 +40,7 @@
     "fzf": "^0.5.1",
     "highlight.js": "^11.7.0",
     "html-to-image": "^1.11.11",
+    "http-proxy-agent": "^5.0.0",
     "jsonp": "^0.2.1",
     "just-throttle": "^4.2.0",
     "katex": "^0.16.4",
@@ -47,7 +48,8 @@
     "markdown-it-highlightjs": "^4.0.1",
     "markdown-it-katex": "^2.0.3",
     "markdown-it-kbd": "^2.2.2",
-    "solid-js": "^1.6.15"
+    "solid-js": "^1.6.15",
+    "undici": "^5.20.0"
   },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.16",
