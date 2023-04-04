@@ -33,7 +33,7 @@ export const config = {
     "syd1"
   ]
 }
-export const localKey = import.meta.env.OPENAI_API_KEY || ""
+export const localKey = import.meta.env.PUBLIC_OPENAI_API_KEY || ""
 
 export const baseURL = import.meta.env.NOGFW
   ? "api.openai.com"

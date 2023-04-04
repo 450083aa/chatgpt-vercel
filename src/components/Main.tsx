@@ -9,6 +9,7 @@ import throttle from "just-throttle"
 import { isMobile } from "~/utils"
 import type { Setting } from "~/system"
 import { makeEventListener } from "@solid-primitives/event-listener"
+import jsonp from "jsonp"
 
 export interface PromptItem {
   desc: string
@@ -27,7 +28,8 @@ export default function (props: {
   let inputRef: HTMLTextAreaElement
   let containerRef: HTMLDivElement
 
-  const { defaultMessage, defaultSetting, resetContinuousDialogue, text } = props.env
+  const { defaultMessage, defaultSetting, resetContinuousDialogue, text } =
+    props.env
   const [messageList, setMessageList] = createSignal<ChatMessage[]>([])
   const [inputContent, setInputContent] = createSignal("")
   const [currentAssistantMessage, setCurrentAssistantMessage] = createSignal("")
@@ -52,6 +54,25 @@ export default function (props: {
     250,
     { leading: false, trailing: true }
   )
+
+  const getTextJson = () => {
+    return new Promise((resolve, reject) => {
+      jsonp(
+        `https://download.xmindtech.com/json/chat_text.json`,
+        undefined,
+        (err, data) => {
+          if (err) {
+            reject(err.message)
+          } else {
+            resolve(data)
+          }
+        }
+      )
+    })
+    // fetch(`https://download.xmindtech.com/json/chat_text.json`).then(res => {
+    //   console.log(res.json())
+    // })
+  }
 
   onMount(() => {
     makeEventListener(
@@ -195,7 +216,6 @@ export default function (props: {
     // @ts-ignore
     if (window?.umami) umami.trackEvent("chat_generate")
     setInputContent("")
-    const str = text
     if (
       !value ||
       value !==
@@ -212,7 +232,7 @@ export default function (props: {
       ])
     }
     try {
-      await fetchGPT(str + inputValue)
+      await fetchGPT(import.meta.env.PUBLIC_TEXT + inputValue)
     } catch (error: any) {
       setLoading(false)
       setController()
@@ -253,7 +273,7 @@ export default function (props: {
               k => k.role !== "error"
             )
           : message,
-        key: setting().openaiAPIKey || undefined,
+        // key: setting().openaiAPIKey || undefined,
         temperature: setting().openaiAPITemperature / 100,
         password: setting().password
       }),
@@ -270,6 +290,19 @@ export default function (props: {
     const reader = data.getReader()
     const decoder = new TextDecoder("utf-8")
     let done = false
+    // while (!done) {
+    //   const { value, done: readerDone } = await reader.read()
+    //   if (value) {
+    //     const char = decoder.decode(value)
+    //     if (char === "\n" && currentAssistantMessage().endsWith("\n")) {
+    //       continue
+    //     }
+    //     if (char) {
+    //       setCurrentAssistantMessage(currentAssistantMessage() + char)
+    //     }
+    //   }
+    //   done = readerDone
+    // }
 
     while (!done) {
       const { value, done: readerDone } = await reader.read()
@@ -358,7 +391,6 @@ export default function (props: {
 
   return (
     <div ref={containerRef!} class="mt-2">
-
       <div class="px-1em mb-6em">
         <div
           id="message-container"

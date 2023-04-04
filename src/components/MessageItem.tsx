@@ -78,29 +78,32 @@ export default (props: Props) => {
         temporary: props.index === undefined
       }}
     >
-      {/*<div*/}
-      {/*  class={`shrink-0 w-7 h-7 mt-4 rounded-full op-80 ${*/}
-      {/*    roleClass[props.role]*/}
-      {/*  }`}*/}
-      {/*/>*/}
       <div
         class="message prose prose-slate dark:prose-invert dark:text-slate break-words overflow-hidden"
         innerHTML={
-          md.render(props.message).indexOf(`我的问题是：`) !== -1 ?  md.render(props.message).replace(
-            /Vercel/g,
-            `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
-          )
-          .replace(
-            /OpenAI/g,
-            `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
-          ).substring(md.render(props.message).indexOf(`我的问题是：`) + 6) : md.render(props.message).replace(
-              /Vercel/g,
-              `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
-          )
-              .replace(
+          md.render(props.message).indexOf(`我的问题是：`) !== -1
+            ? md
+                .render(props.message)
+                .replace(
+                  /Vercel/g,
+                  `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
+                )
+                .replace(
                   /OpenAI/g,
                   `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
-              )}
+                )
+                .substring(md.render(props.message).indexOf(`我的问题是：`) + 6)
+            : md
+                .render(props.message)
+                .replace(
+                  /Vercel/g,
+                  `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
+                )
+                .replace(
+                  /OpenAI/g,
+                  `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
+                )
+        }
         // innerHTML={md.render(props.message).replace(
         //       /Vercel/g,
         //       `<a href="http://vercel.com/?utm_source=busiyi&utm_campaign=oss" style="border-bottom:0">${vercel}</a>`
@@ -109,14 +112,15 @@ export default (props: Props) => {
         //           /OpenAI/g,
         //           `<a href="https://www.openai.com" style="border-bottom:0">${openai}</a>`
         //       )}
-      />
-      <MessageAction
-        del={del}
-        copy={copy}
-        edit={edit}
-        role={props.role}
-        hidden={props.index === undefined}
-      />
+      >
+        <MessageAction
+          del={del}
+          copy={copy}
+          edit={edit}
+          role={props.role}
+          hidden={props.index === undefined}
+        />
+      </div>
     </div>
   )
 }
