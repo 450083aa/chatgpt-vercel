@@ -10,6 +10,7 @@ import { isMobile } from "~/utils"
 import type { Setting } from "~/system"
 import { makeEventListener } from "@solid-primitives/event-listener"
 import jsonp from "jsonp"
+import { baseURL } from "~/pages/api"
 
 export interface PromptItem {
   desc: string
@@ -265,6 +266,7 @@ export default function (props: {
         role: "system",
         content: systemRule
       })
+    console.log(import.meta.env)
     const response = await fetch("/api", {
       method: "POST",
       body: JSON.stringify({

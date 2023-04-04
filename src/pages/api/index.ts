@@ -37,7 +37,7 @@ export const localKey = import.meta.env.PUBLIC_OPENAI_API_KEY || ""
 
 export const baseURL = import.meta.env.NOGFW
   ? "api.openai.com"
-  : (import.meta.env.OPENAI_API_BASE_URL || "api.openai.com").replace(
+  : (import.meta.env.PUBLIC_OPENAI_API_BASE_URL || "api.openai.com").replace(
       /^https?:\/\//,
       ""
     )
@@ -105,7 +105,7 @@ export const post: APIRoute = async context => {
 
     const encoder = new TextEncoder()
     const decoder = new TextDecoder()
-
+    console.log(baseURL)
     const rawRes = await fetchWithTimeout(
       `https://${baseURL}/v1/chat/completions`,
       {
