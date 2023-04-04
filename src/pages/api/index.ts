@@ -105,7 +105,6 @@ export const post: APIRoute = async context => {
 
     const encoder = new TextEncoder()
     const decoder = new TextDecoder()
-    console.log(baseURL)
     const rawRes = await fetchWithTimeout(
       `https://${baseURL}/v1/chat/completions`,
       {

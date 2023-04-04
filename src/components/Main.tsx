@@ -266,7 +266,6 @@ export default function (props: {
         role: "system",
         content: systemRule
       })
-    console.log(import.meta.env)
     const response = await fetch("/api", {
       method: "POST",
       body: JSON.stringify({
